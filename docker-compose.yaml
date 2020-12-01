@@ -24,3 +24,14 @@ services:
       - 8761
     depends_on:
       - config
+
+  jms:
+    container_name: jms
+    image: rmohr/activemq
+    restart: always
+    ports:
+      - 6161:61616
+      - 8161:8161
+    expose:
+      - 6161
+      - 8161

@@ -3,10 +3,7 @@ package com.gasparbarancelli.produtos.api;
 import com.gasparbarancelli.produtos.model.Produto;
 import com.gasparbarancelli.produtos.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,6 +23,16 @@ public class ProdutoApi {
     @GetMapping("{id}")
     public Optional<Produto> one(@PathVariable("id") Long id) {
         return repository.findById(id);
+    }
+
+    @PostMapping
+    public Produto insert(@RequestBody Produto produto) {
+        return repository.save(produto);
+    }
+
+    @DeleteMapping("{id}")
+    public void delete(@PathVariable("id") Long id) {
+        repository.deleteById(id);
     }
 
 }
