@@ -1,0 +1,26 @@
+version: '3'
+services:
+
+  config:
+    container_name: config
+    image: pabloluduvichack/microservices-config:1.0
+    restart: always
+    environment:
+      URI: 'https://github.com/pluduvichack/microservices.git'
+    ports:
+    - 8888:8888
+    expose:
+      - 8888
+
+  discovery:
+    container_name: discovery
+    image: pabloluduvichack/microservices-discovery:1.0
+    restart: always
+    environment:
+      CONFIG_SERVER_URL: 'http://config:8888'
+    ports:
+      - 8761:8761
+    expose:
+      - 8761
+    depends_on:
+      - config
