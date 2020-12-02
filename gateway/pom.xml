@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.gasparbarancelli</groupId>
 	<artifactId>gateway</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<name>gateway</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -63,6 +63,26 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>2.6.0</version>
+				<configuration>
+					<from>
+						<image>openjdk:15-jdk-slim-buster</image>
+					</from>
+					<to>
+						<image>pabloluduvichack/microservices-gateway:${version}</image>
+					</to>
+					<container>
+						<jvmFlags>
+							<jvmFlag>-Xms128m</jvmFlag>
+							<jvmFlag>-Xmx256m</jvmFlag>
+						</jvmFlags>
+						<mainClass>com.gasparbarancelli.gateway.GatewayApplication</mainClass>
+					</container>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
