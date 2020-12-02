@@ -36,6 +36,21 @@ services:
       - 6161
       - 8161
 
+  produtos:
+    container_name: produtos
+    image: pabloluduvichack/microservices-produtos:1.0
+    restart: always
+    environment:
+      CONFIG_SERVER_URL: 'http://config:8888'
+      EUREKA_URL: 'http://discovery:8761/eureka/'
+      JMS_URL: 'tcp://jms:61616'
+    ports:
+      - 8081:8081
+    depends_on:
+      - config
+      - discovery
+      - jms
+
   gateway:
     container_name: gateway
     image: pabloluduvichack/microservices-gateway:1.0
