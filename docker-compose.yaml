@@ -65,3 +65,18 @@ services:
     depends_on:
       - config
       - discovery
+
+  mysql:
+    container_name: mysql
+    image: mysql:5.7
+    restart: always
+    hostname: mysql
+    environment:
+      MYSQL_DATABASE: 'vendas'
+      MYSQL_USER: 'vendas'
+      MYSQL_PASSWORD: 'vendas123'
+      MYSQL_ROOT_PASSWORD: 'vendas123'
+    ports:
+      - 3307:3306
+    expose:
+      - 3307
