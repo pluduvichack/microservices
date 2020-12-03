@@ -30,8 +30,9 @@ public class CupomApi {
     }
 
     @GetMapping("{id}")
-    public Cupom findById(@PathVariable("id") String id) {
+    public BigDecimal findById(@PathVariable("id") String id) {
         return repository.findById(id)
-                .orElseThrow(() -> new CupomNotFoundException("Cupom de código " + id + " não encontrado"));
+                .orElseThrow(() -> new CupomNotFoundException("Cupom de código " + id + " não encontrado"))
+                .getDesconto();
     }
 }
