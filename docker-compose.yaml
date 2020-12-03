@@ -1,6 +1,15 @@
 version: '3'
 services:
 
+  trace:
+    container_name: trace
+    image: openzipkin/zipkin
+    restart: always
+    ports:
+      - 9411:9411
+    expose:
+      - 9411
+
   config:
     container_name: config
     image: pabloluduvichack/microservices-config:1.0
